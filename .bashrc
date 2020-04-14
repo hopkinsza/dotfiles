@@ -1,0 +1,3 @@
+# .bashrc
+
+. $HOME/.kshrc
