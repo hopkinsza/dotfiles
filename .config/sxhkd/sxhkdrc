@@ -7,10 +7,10 @@ alt + Return
 	xfce4-terminal
 
 # program launcher
-alt + @space
+alt + {d,space}
 	dmenu_run
 
-# make sxhkd reload its configuration files:
+# reload sxhkd config
 alt + Escape
 	pkill -USR1 -x sxhkd
 
@@ -18,74 +18,64 @@ alt + Escape
 # bspwm hotkeys
 #
 
-# quit/restart bspwm
-alt + shift + {q,r}
-	bspc {quit,wm -r}
-
-# close and kill
-# @frej: was w by default
-#alt + {_,shift + }w
-#	bspc node -{c,k}
-alt + {q,c}
+# restart/quit bspwm
+alt + {_,shift + }c
+	bspc {wm -r,quit}
+# close/kill node
+alt + {_,shift + }q
 	bspc node -{c,k}
 
-# alternate between the tiled and monocle layout
+# alternate between tiled and monocle layout
 alt + m
 	bspc desktop -l next
 
-# send the newest marked node to the newest preselected node
-#alt + y
-#	bspc node newest.marked.local -n newest.!automatic.local
+# toggle gaps
+alt + shift + g
+	bspc config window_gap {0,10}
+# change gap size
+alt + {_,shift + }z
+	bspc config window_gap $((`bspc config window_gap` {+,-} 5))
 
-# swap the current node and the biggest node
-alt + g
-	bspc node -s biggest
+# reset top_padding
+alt + b
+	bspc config top_padding 0
 
 #
 # state/flags
 #
 
-# set the window state
+# set window state
 alt + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
-
-# set the node flags
-#super + ctrl + {m,x,y,z}
-#	bspc node -g {marked,locked,sticky,private}
+	bspc node -t {tiled,pseudo_tiled,floating,~fullscreen}
 
 #
 # focus/swap
 #
 
-# focus the node in the given direction
+# swap current node with biggest (or next if it's already biggest)
+alt + g
+	bspc node -s biggest.local || bspc node -s next.local
+
+# focus/send node in given direction
 alt + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
-# focus the node for the given path jump
-alt + {shift + p,b,comma,period}
+# focus node for given path jump
+alt + shift + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
-# focus the next/previous node in the current desktop
-#alt + {_,shift + }c
-#	bspc node -f {next,prev}.local
+# focus next/previous node in current desktop
 alt + {n,p}
 	bspc node -f {next,prev}.local
-
-# focus the next/previous desktop in the current monitor
+# focus next/previous desktop in current monitor
 alt + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
-# focus the last node/desktop
+# focus last node/desktop
 alt + {Tab,grave}
 	bspc {node,desktop} -f last
 
-# focus the older or newer node in the focus history
-#alt + {o,i}
-#	bspc wm -h off; \
-#	bspc node {older,newer} -f; \
-#	bspc wm -h on
-
-# focus or send to the given desktop
+# focus/send to given desktop
 alt + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
@@ -93,34 +83,46 @@ alt + {_,shift + }{1-9,0}
 # preselect
 #
 
-# preselect the direction
-super + ctrl + {h,j,k,l}
+# preselect direction
+alt + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
-
-# preselect the ratio
-super + ctrl + {1-9}
+# preselect ratio
+alt + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
-# cancel the preselection for the focused node
-super + ctrl + space
+# cancel preselection for focused node
+alt + ctrl + space
 	bspc node -p cancel
-
-# cancel the preselection for the focused desktop
-super + ctrl + shift + space
+# cancel preselection for focused desktop
+alt + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #
 # move/resize
 #
 
-# expand a window by moving one of its side outward
-super + alt + {h,j,k,l}
+# expand window in given direction
+alt + {y,u,i,o}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# contract a window by moving one of its side inward
-super + alt + shift + {h,j,k,l}
+# contract window in given direction
+alt + shift + {y,u,i,o}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-# move a floating window
-super + {Left,Down,Up,Right}
+# move floating window
+alt + ctrl + {y,u,i,o}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#
+# tree shuffling
+#
+
+# "balance" tree rooted at node to make all nodes take up the same area,
+# or "equalize" back to defaults
+alt + {b,e}
+	bspc node -{B,E}
+# rotate tree rooted at selected node
+alt + {_,shift +}r
+	bspc node -R {90,270}
+# flip tree rooted at selected node
+alt + {_,shift +}f
+	bspc node -F {horizontal,vertical}
