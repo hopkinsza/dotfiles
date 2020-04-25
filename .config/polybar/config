@@ -42,7 +42,7 @@ font2	= sans:pixelsize=7;2
 
 modules-left	= bspwm xwindow
 ;modules-center = mpd
-modules-right	= cpu mem tmp xbacklight wlan eth batt pulse date
+modules-right	= cpu mem temp xbacklight wlan eth batt pulse date
 ;modules-right	= pwr
 
 ;
