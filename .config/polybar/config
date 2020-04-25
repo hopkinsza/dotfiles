@@ -1,0 +1,337 @@
+[colors]
+black	= ${xrdb:color0:#000}
+red	= ${xrdb:color1:#a00}
+green	= ${xrdb:color2:#0a0}
+orange	= ${xrdb:color3:#a50}
+blue	= ${xrdb:color4:#00a}
+mag	= ${xrdb:color5:#a0a}
+cyan	= ${xrdb:color6:#0aa}
+b-gray	= ${xrdb:color7:#aaa}
+
+gray	= ${xrdb:color8:#222}
+b-red	= ${xrdb:color9:#d22}
+b-green	= ${xrdb:color10:#2d2}
+yellow	= ${xrdb:color11:#dd2}
+b-blue	= ${xrdb:color12:#22d}
+b-mag	= ${xrdb:color13:#d2d}
+b-cyan	= ${xrdb:color14:#2dd}
+white	= ${xrdb:color15:#ddd}
+
+bg	= #111
+bg-c	= #202820
+
+fg-c	= ${self.green}
+; hardcoded in module/date:
+fg	= #999
+fg-dark	= #555
+
+c	= ${self.mag}
+a	= ${self.red}
+
+[bar/frej]
+;
+; global functionality
+;
+enable-ipc = true
+scroll-up = bspwm-deskprev
+scroll-down = bspwm-desknext
+
+;
+; appearance
+;
+; properly sit beneath all other windows
+wm-restack	= bspwm
+width		= 100%
+height		= 26
+padding-right 	= 1
+;radius-bottom = 3.0
+;border-left-size = 4
+
+background-0	= ${colors.bg-c}
+background-1	= ${colors.bg}
+foreground	= ${colors.fg-c}
+
+font-0		= mono:pixelsize=10;1
+;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+;font-2 = siji:pixelsize=10;1
+
+override-redirect = true
+cursor-click	= pointer
+;cursor-scroll = ns-resize
+
+;
+; module appearance
+;
+
+line-size		= 3
+;line-color		= #f00
+fixed-center		= false
+module-margin-left	= 1
+module-margin-right 	= 2
+
+;
+; tray
+;
+
+tray-position	= right
+tray-padding	= 1
+tray-background	= ${colors.bg-c}
+
+;
+; modules
+;
+
+modules-left	= bspwm xwindow
+;modules-center = mpd
+modules-right	= cpu mem tmp wlan eth batt pulse date
+;modules-right	= xbacklight tmp pwr
+
+[module/bspwm]
+type		= internal/bspwm
+enable-scroll	= false
+
+format		= <label-state> <label-mode>
+
+ws-icon-0	= 1;${}
+ws-icon-1	= 2;www
+ws-icon-2	= 3;irc
+ws-icon-3	= 4;4
+ws-icon-4	= 5;5
+ws-icon-5	= 6;6
+ws-icon-6	= 7;7
+ws-icon-7	= 8;8
+ws-icon-8	= 9;9
+ws-icon-9	= 0;0
+
+label-focused		= %icon%
+label-focused-background = ${colors.bg-c}
+label-focused-underline	= ${colors.c}
+label-focused-padding	= 2
+
+label-empty		= %icon%
+label-empty-foreground	= ${colors.fg-dark}
+label-empty-padding	= 2
+
+label-occupied		= %icon%
+label-occupied-foreground = ${colors.fg}
+label-occupied-underline  = ${colors.fg-dark}
+label-occupied-padding	= 2
+
+label-urgent		= %icon%!
+label-urgent-background = ${colors.a}
+label-urgent-padding	= 2
+
+label-tiled		=
+label-pseudotiled	= p
+label-monocle		= m
+label-fullscreen	= f
+label-floating		= s
+
+;label-separator = |
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:60:...%
+; format-background = ${bg}
+format-foreground = ${colors.fg-dark}
+
+; [module/mpd]
+; type = internal/mpd
+; format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+; 
+; icon-prev = 
+; icon-stop = 
+; icon-play = 
+; icon-pause = 
+; icon-next = 
+; 
+; label-song-maxlen = 25
+; label-song-ellipsis = true
+
+; [module/xbacklight]
+; type = internal/xbacklight
+; 
+; format = <label> <bar>
+; label = BL
+; 
+; bar-width = 10
+; bar-indicator = |
+; bar-indicator-foreground = #fff
+; bar-indicator-font = 2
+; bar-fill = ─
+; bar-fill-font = 2
+; bar-fill-foreground = #9f78e1
+; bar-empty = ─
+; bar-empty-font = 2
+; bar-empty-foreground = ${colors.fg-dark}
+; 
+; [module/backlight-acpi]
+; inherit = module/xbacklight
+; type = internal/backlight
+; card = intel_backlight
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "cpu "
+format-prefix-foreground = ${colors.fg}
+format-underline = ${colors.red}
+label = %percentage:2%%
+
+[module/mem]
+type = internal/memory
+interval = 2
+format-prefix = "mem "
+format-prefix-foreground = ${colors.fg}
+format-underline = ${colors.cyan}
+label = %percentage_used%%
+
+[module/wlan]
+type		= internal/network
+interface	= iwn0
+interval	= 3
+
+format-connected-prefix		= ${self.interface}
+format-connected-prefix-foreground = ${colors.fg}
+format-connected		= <ramp-signal> <label-connected>
+format-connected-underline	= ${colors.mag}
+
+label-connected			= " %essid% %local_ip%"
+
+format-disconnected-prefix	= ${self.format-connected-prefix}
+format-disconnected-prefix-foreground = ${self.format-connected-prefix-foreground}
+format-disconnected		= <label-disconnected>
+format-disconnected-underline	= ${self.format-connected-underline}
+
+label-disconnected		= " n/a"
+
+ramp-signal-0 = 20%
+ramp-signal-1 = 40%
+ramp-signal-2 = 60%
+ramp-signal-3 = 80%
+ramp-signal-4 = 100%
+ramp-signal-foreground = ${colors.fg}
+
+[module/eth]
+inherit = module/wlan
+
+interface = enp3s0
+
+format-connected		= <label-connected>
+format-connected-underline 	= ${colors.green}
+label-connected			= " %local_ip%"
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = %a %Y-%m-%d
+time = %l:%M %p
+
+format-underline = ${colors.b-blue}
+label = "%{F#999}%date%%{F-} %time%"
+
+[module/pulse]
+type = internal/pulseaudio
+use-ui-max = false
+
+format-volume = <label-volume> <bar-volume>
+label-volume = %percentage%%
+
+label-muted = "    muted     "
+label-muted-foreground = ${colors.fg-dark}
+
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.fg-c}
+bar-volume-foreground-1 = ${colors.fg-c}
+bar-volume-foreground-2 = ${colors.fg-c}
+bar-volume-foreground-3 = ${colors.fg-c}
+bar-volume-foreground-4 = ${colors.fg-c}
+bar-volume-foreground-5 = ${colors.c}
+bar-volume-foreground-6 = ${colors.a}
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.fg-dark}
+
+[module/alsa]
+type = internal/alsa
+inherit = module/pulse
+
+[module/batt]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.yellow}
+label-charging = %percentage%%
+animation-charging-0 = |-|
+animation-charging-1 = |+|
+animation-charging-foreground = ${colors.fg}
+animation-charging-framerate = 750
+
+format-discharging = <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+label-discharging = ${self.label-charging}
+format-discharging-prefix = |-|
+format-discharging-prefix-foreground = ${colors.fg}
+
+format-full = <animation-full> <label-full>
+format-full-underline = ${self.format-charging-underline}
+label-full = ${self.label-charging}
+animation-full-0 = |-|
+animation-full-1 = |=|
+animation-full-foreground = ${colors.b-green}
+animation-full-framerate = 750
+
+[module/tmp]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+format-underline = ${colors.orange}
+format-warn = <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.orange}
+
+[module/pwr]
+type = custom/menu
+
+format-spacing = 1
+
+label-open = pwr
+label-open-foreground = ${colors.fg-c}
+label-close = cancel
+label-close-foreground = ${colors.fg}
+label-separator = |
+label-separator-foreground = ${colors.fg}
+
+menu-0-0 = "reboot  "
+menu-0-0-exec = menu-open-1
+menu-0-1 = "poweroff"
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = "cancel  "
+menu-1-0-exec = menu-open-0
+menu-1-1 = "reboot  "
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = "poweroff"
+menu-2-0-exec = sudo poweroff
+menu-2-1 = "cancel  "
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+
+; vim:ft=dosini
