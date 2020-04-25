@@ -1,0 +1,31 @@
+/*
+!/.gitignore
+### shell
+!/.profile
+!/.kshrc
+
+!/.bashrc
+!/.zshrc
+
+### configs
+!/.config
+/.config/*
+
+!/.config/bspwm
+!/.config/sxhkd
+# is a symlink:
+/.config/sxhkd/sxhkdrc
+
+!/.config/polybar
+
+# fonts
+!/.config/fontconfig
+
+# gtk dark mode
+!/.config/gtk-3.0
+/.config/gtk-3.0/*
+!/.config/gtk-3.0/settings.ini
+
+!/.config/gtk-4.0
+/.config/gtk-4.0/*
+!/.config/gtk-4.0/settings.ini
