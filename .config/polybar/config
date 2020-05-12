@@ -27,7 +27,7 @@ c	= ${self.mag}
 a	= ${self.red}
 
 eth	= eth0
-wlan	= iwn0
+wlan	= wlan0
 ; main font
 font0	= mono:pixelsize=10;1
 ; text
