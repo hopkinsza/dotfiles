@@ -3,6 +3,7 @@
 # loksh/mksh; enable histfile:
 #export HISTFILE=~/.history_ksh
 alias ls='ls --color=auto'
+alias ll='ls -laF'
 alias grep='grep --color=auto'
 alias f='clear'
 alias v=$VISUAL
@@ -16,8 +17,6 @@ notes () {
 if [ "$ZSH_VERSION" -o "$KSH_VERSION" -o "$BASH_VERSION" ]; then
 	if [ "$ZSH_VERSION" ]; then
 		set -o prompt_subst
-		# PS1='%F{green}[%n %f%F{blue}%B%~%b%f%F{green}]%f'\
-# '%{`asdfgfa`%}%F{green}$ %f'
 		PS1='%F{green}[%n %f%F{blue}%B%20<*<%~%<<%b%f%F{green}]%f'\
 '%(0?.%F{green}$%f.%F{red}$%f) '
 		RPS1='%F{yellow}$('
@@ -28,7 +27,7 @@ if [ "$ZSH_VERSION" -o "$KSH_VERSION" -o "$BASH_VERSION" ]; then
 		# mksh
 		PS1=$'\1\r\1\e[00;32m\1[frej \1\e[01;34m\1${|
 			typeset e=$?
-			if [[ $PWD = $HOME/git/* ]]; then
+			if [[ "$SH_GIT" = y && $PWD = $HOME/git/* ]]; then
 				REPLY+=${PWD##*/}:
 				REPLY+="\1\e[00;33m\1"
 				REPLY+=$(git branch --show-current)

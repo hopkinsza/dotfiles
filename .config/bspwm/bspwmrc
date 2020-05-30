@@ -12,7 +12,7 @@ killall polybar;	polybar frej &
 
 killall xfce-polkit;	/usr/libexec/xfce-polkit &
 killall xfce4-notifyd;	/usr/lib/xfce4/notifyd/xfce4-notifyd &
-killall unclutter;	unclutter -idle 2 -jitter 16 &
+# killall unclutter;	unclutter -idle 2 -jitter 16 &
 nitrogen --restore &
 #xfsettingsd
 } >/dev/null 2>&1

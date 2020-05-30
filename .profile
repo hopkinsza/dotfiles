@@ -6,4 +6,4 @@ export EDITOR=$VISUAL
 export FCEDIT=$VISUAL
 export ENV=$HOME/.kshrc
 
-[ `tty` = /dev/tty1 ] && startx
+# [ `tty` = /dev/tty1 ] && startx
