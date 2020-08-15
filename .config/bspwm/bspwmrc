@@ -12,9 +12,9 @@ killall polybar;	polybar frej &
 
 killall xfce-polkit;	/usr/libexec/xfce-polkit &
 killall xfce4-notifyd;	/usr/lib/xfce4/notifyd/xfce4-notifyd &
+killall xfce4-screensaver;	/usr/bin/xfce4-screensaver &
 # killall unclutter;	unclutter -idle 2 -jitter 16 &
 nitrogen --restore &
-#xfsettingsd
 } >/dev/null 2>&1
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9 0
@@ -39,3 +39,5 @@ bspc config pointer_modifier		mod1
 # bspc rule -a mplayer2 state=floating
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
+
+#xinput set-prop 'pointer:Corsair Corsair Gaming GLAIVE RGB Mouse' 'libinput Accel Profile Enabled' 0, 1
