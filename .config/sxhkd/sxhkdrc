@@ -8,9 +8,6 @@ alt + backslash
 # reload sxhkd config
 alt + Escape
 	pkill -USR1 -x sxhkd
-# disable everything
-alt + shift + Delete
-	notify-send -t 2000 -i security-low 'sxhkd' 'hotkeys disabled'; ln -sf bare.conf ~/.config/sxhkd/sxhkdrc; pkill -USR1 -x sxhkd
 
 # terminal emulator
 alt + Return
