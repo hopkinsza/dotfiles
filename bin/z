@@ -1,0 +1,19 @@
+#!/bin/sh
+usage () {
+	cat >&2 <<-EOF
+	Usage: $1 -m[macro] file
+	EOF
+	exit 1
+}
+
+marg=
+while getopts 'm:' f; do
+	case "$f" in
+		m)  marg=$OPTARG;;
+		\?) usage ;;
+	esac
+done
+shift $(( $OPTIND - 1 ))
+
+[ "$marg" = "" ] && usage
+groff -m"$marg" -Tpdf "$@" | zathura -
