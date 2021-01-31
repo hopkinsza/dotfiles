@@ -13,7 +13,7 @@ alt + Escape
 alt + Return
 	xfce4-terminal
 # program launcher
-alt + {d,space}
+alt + space
 	dmenu_run
 # screenshooter
 alt + Print

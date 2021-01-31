@@ -25,7 +25,7 @@ if [ "$ZSH_VERSION" -o "$KSH_VERSION" -o "$BASH_VERSION" ]; then
 		RPS1+=')%f'
 	elif [[ "$KSH_VERSION" = *MIRBSD* ]]; then
 		# mksh
-		PS1=$'\1\r\1\e[00;32m\1[frej \1\e[01;34m\1${|
+		PS1=$'\1\r\1\e[00;32m\1[frey \1\e[01;34m\1${|
 			typeset e=$?
 			if [[ "$SH_GIT" = y && $PWD = $HOME/git/* ]]; then
 				REPLY+=${PWD##*/}:
@@ -33,7 +33,7 @@ if [ "$ZSH_VERSION" -o "$KSH_VERSION" -o "$BASH_VERSION" ]; then
 				REPLY+=$(git branch --show-current)
 				REPLY+=$([ -n "$(git status -s)" ] && print "\1\e[00;31m\1!!")
 			else
-				REPLY+=${PWD/\\/home\\/frej/\\~}
+				REPLY+=${PWD/\\/home\\/frey/\\~}
 			fi
 			REPLY+="\1\e[00;32m\1"
 			return $e
