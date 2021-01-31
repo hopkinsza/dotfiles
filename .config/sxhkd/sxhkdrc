@@ -14,7 +14,8 @@ alt + Return
 	xfce4-terminal
 # program launcher
 alt + space
-	dmenu_run
+	rofi -show run
+	#dmenu_run
 # screenshooter
 alt + Print
 	xfce4-screenshooter

@@ -17,12 +17,12 @@ b-mag	= ${xrdb:color13:#d2d}
 b-cyan	= ${xrdb:color14:#2dd}
 white	= ${xrdb:color15:#ddd}
 
-bg	= #111
-bg-c	= #202820
-; note: fg is hardcoded in module/date
-fg-c	= ${self.green}
-fg	= #999
-fg-dark	= #555
+bg	= #181818
+bg-l	= #282828
+; note: txt is hardcoded in module/date
+txt	= #aaa
+txt-d	= #666
+txt-c	= ${self.green}
 c	= ${self.mag}
 a	= ${self.red}
 
@@ -49,8 +49,8 @@ modules-right	= cpu mem temp xbacklight wlan eth batt pulse date
 ; global functionality
 ;
 enable-ipc = true
-scroll-up = bspwm-deskprev
-scroll-down = bspwm-desknext
+scroll-up = #bspwm.prev
+scroll-down = #bspwm.next
 
 ;
 ; appearance
@@ -58,14 +58,15 @@ scroll-down = bspwm-desknext
 ; properly sit beneath all other windows
 wm-restack	= bspwm
 width		= 100%
-height		= 26
+height		= 24
 padding-right 	= 1
 ;radius-bottom = 3.0
 ;border-left-size = 4
 
-background-0	= ${g.bg-c}
-background-1	= ${g.bg}
-foreground	= ${g.fg-c}
+background	= ${g.bg}
+;background-0	= ${g.bg-l}
+;background-1	= ${g.bg}
+foreground	= ${g.txt-c}
 
 font-0		= ${g.font0}
 font-1		= ${g.font1}
@@ -91,7 +92,7 @@ module-margin-right 	= 2
 
 tray-position	= right
 tray-padding	= 1
-tray-background	= ${g.bg-c}
+tray-background	= ${g.bg-l}
 
 [module/bspwm]
 type		= internal/bspwm
@@ -111,17 +112,17 @@ ws-icon-8	= 9;9
 ws-icon-9	= 0;0
 
 label-focused		= %icon%
-label-focused-background = ${g.bg-c}
+label-focused-background = ${g.bg-l}
 label-focused-underline	= ${g.c}
 label-focused-padding	= 2
 
 label-empty		= %icon%
-label-empty-foreground	= ${g.fg-dark}
+label-empty-foreground	= ${g.txt-d}
 label-empty-padding	= 2
 
 label-occupied		= %icon%
-label-occupied-foreground = ${g.fg}
-label-occupied-underline  = ${g.fg-dark}
+label-occupied-foreground = ${g.txt}
+label-occupied-underline  = ${g.txt-d}
 label-occupied-padding	= 2
 
 label-urgent		= %icon%!
@@ -138,10 +139,10 @@ label-floating		= s
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:40:...%
+label = %title:0:80:...%
 label-font = 3
 ; format-background = ${bg}
-format-foreground = ${g.fg-dark}
+format-foreground = ${g.txt-d}
 
 ; [module/mpd]
 ; type = internal/mpd
@@ -170,7 +171,7 @@ format-underline = ${g.b-gray}
 type		= internal/cpu
 interval	= 2
 format-prefix	= "cpu "
-format-prefix-foreground = ${g.fg}
+format-prefix-foreground = ${g.txt}
 format-prefix-font = 2
 format-underline = ${g.red}
 label		= %percentage:2%%
@@ -179,7 +180,7 @@ label		= %percentage:2%%
 type		= internal/memory
 interval	= 2
 format-prefix	= "mem "
-format-prefix-foreground = ${g.fg}
+format-prefix-foreground = ${g.txt}
 format-prefix-font = 2
 format-underline = ${g.cyan}
 label		= %percentage_used:2%%
@@ -190,7 +191,7 @@ interface	= ${g.wlan}
 interval	= 3
 
 format-connected-prefix		= ${self.interface}
-format-connected-prefix-foreground = ${g.fg}
+format-connected-prefix-foreground = ${g.txt}
 format-connected-prefix-font	= 2
 format-connected		= <ramp-signal> <label-connected>
 format-connected-underline	= ${g.mag}
@@ -199,7 +200,7 @@ label-connected			= " %essid%"
 label-connected-font		= 2
 
 format-disconnected-prefix	= ${self.format-connected-prefix}
-format-disconnected-prefix-foreground = ${g.fg}
+format-disconnected-prefix-foreground = ${g.txt}
 format-disconnected-prefix-font	= 2
 format-disconnected		= <label-disconnected>
 format-disconnected-underline	= ${g.mag}
@@ -212,7 +213,7 @@ ramp-signal-1 = :040
 ramp-signal-2 = :060
 ramp-signal-3 = :080
 ramp-signal-4 = :100
-ramp-signal-foreground = ${g.fg}
+ramp-signal-foreground = ${g.txt}
 ramp-signal-font = 2
 
 [module/eth]
@@ -245,14 +246,14 @@ format-volume	= <label-volume> <bar-volume>
 label-volume	= %percentage:2%%
 
 label-muted	= "    muted     "
-label-muted-foreground = ${g.fg-dark}
+label-muted-foreground = ${g.txt-d}
 
 bar-volume-width = 10
-bar-volume-foreground-0 = ${g.fg-c}
-bar-volume-foreground-1 = ${g.fg-c}
-bar-volume-foreground-2 = ${g.fg-c}
-bar-volume-foreground-3 = ${g.fg-c}
-bar-volume-foreground-4 = ${g.fg-c}
+bar-volume-foreground-0 = ${g.txt-c}
+bar-volume-foreground-1 = ${g.txt-c}
+bar-volume-foreground-2 = ${g.txt-c}
+bar-volume-foreground-3 = ${g.txt-c}
+bar-volume-foreground-4 = ${g.txt-c}
 bar-volume-foreground-5 = ${g.c}
 bar-volume-foreground-6 = ${g.a}
 bar-volume-gradient	= false
@@ -262,7 +263,7 @@ bar-volume-fill 	= ─
 ;bar-volume-fill-font = 2
 bar-volume-empty	= ─
 ;bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${g.fg-dark}
+bar-volume-empty-foreground = ${g.txt-d}
 
 [module/alsa]
 type = internal/alsa
@@ -278,21 +279,21 @@ format-charging			= <label-charging>
 format-charging-underline	= ${g.yellow}
 label-charging			= %percentage%%
 format-charging-prefix		= "+"
-format-charging-prefix-foreground = ${g.fg}
+format-charging-prefix-foreground = ${g.txt}
 format-charging-prefix-font	= 1
 
 format-discharging		= <label-discharging>
 format-discharging-underline	= ${self.format-charging-underline}
 label-discharging		= ${self.label-charging}
 format-discharging-prefix	= "-"
-format-discharging-prefix-foreground = ${g.fg}
+format-discharging-prefix-foreground = ${g.txt}
 format-discharging-prefix-font	= 1
 
 format-full			= <label-full>
 format-full-underline		= ${self.format-charging-underline}
 label-full			= ${self.label-charging}
 format-full-prefix		= "="
-format-full-prefix-foreground	= ${g.fg}
+format-full-prefix-foreground	= ${g.txt}
 format-full-prefix-font		= 1
 
 [module/temp]
@@ -315,11 +316,11 @@ type = custom/menu
 format-spacing = 1
 
 label-open		= pwr
-label-open-foreground	= ${g.fg-c}
+label-open-foreground	= ${g.txt-c}
 label-close		= cancel
-label-close-foreground	= ${g.fg}
+label-close-foreground	= ${g.txt}
 label-separator		= |
-label-separator-foreground = ${g.fg}
+label-separator-foreground = ${g.txt}
 
 menu-0-0	= "reboot  "
 menu-0-0-exec	= menu-open-1
