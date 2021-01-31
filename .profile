@@ -1,6 +1,10 @@
 # .profile
 
-export PATH=$PATH:$HOME/bin
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/games
+PATH=$PATH:$HOME/bin:/usr/pkg/bin:/usr/pkg/sbin
+export PATH
+export LC_ALL=C
+export MANPATH=/usr/share/man:/usr/pkg/man
 export VISUAL=vim
 export EDITOR=$VISUAL
 export FCEDIT=$VISUAL
