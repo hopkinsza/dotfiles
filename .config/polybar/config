@@ -35,7 +35,7 @@ font1	= sans:pixelsize=9;1
 ; xwindow text
 font2	= sans:pixelsize=7;2
 
-[bar/frej]
+[bar/frey]
 ;
 ; modules
 ;
@@ -49,8 +49,8 @@ modules-right	= cpu mem temp xbacklight wlan eth batt pulse date
 ; global functionality
 ;
 enable-ipc = true
-scroll-up = #bspwm.prev
-scroll-down = #bspwm.next
+scroll-up = #bspwm.next
+scroll-down = #bspwm.prev
 
 ;
 ; appearance
