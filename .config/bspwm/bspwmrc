@@ -4,7 +4,7 @@ xrdb ~/.Xresources
 {
 killall sxhkd;		sxhkd &
 
-killall polybar;	polybar frej &
+killall polybar;	polybar frey &
 
 killall xfce-polkit;	/usr/libexec/xfce-polkit &
 killall xfce4-notifyd;	/usr/lib/xfce4/notifyd/xfce4-notifyd &
