@@ -13,8 +13,8 @@
 
 !/.config/bspwm
 !/.config/sxhkd
-# is a symlink:
-/.config/sxhkd/sxhkdrc
+
+!/.config/rofi
 
 !/.config/polybar
 

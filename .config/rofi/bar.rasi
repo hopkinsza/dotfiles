@@ -1,0 +1,51 @@
+* {
+	bg:    #181818;
+	bg-l:  #282828;
+	bg-c:  #035;
+	txt-c: #080;
+
+	background-color: @bg;
+	text-color:       #aaa;
+	font:             "Mono 10";
+
+	padding:          0px;
+}
+
+#window {
+    anchor: north;
+    location: north;
+    y-offset: 24px;
+    width: 100%;
+    children: [ horibox ];
+}
+
+#horibox {
+    orientation: horizontal;
+    children: [ prompt, entry, listview ];
+}
+
+#prompt {
+    padding:          4px;
+    background-color: @bg-c;
+}
+
+#entry {
+    text-color:       @txt-c;
+    padding: 4px 4px;
+    expand: false;
+    width: 10em;
+}
+
+#listview {
+    layout:  horizontal;
+    spacing: 2px;
+    lines:   100;
+}
+
+#element {
+    padding: 4px 8px;
+}
+
+#element selected {
+    background-color: @bg-l;
+}
