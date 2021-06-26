@@ -232,7 +232,7 @@ label-disconnected-font		= 1
 type = internal/date
 interval = 5
 
-date = %a %Y-%m-%d
+date = %a %F
 time = %l:%M %p
 
 format-underline = ${g.b-blue}
