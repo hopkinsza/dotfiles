@@ -1,0 +1,42 @@
+#!/bin/ksh
+
+mypid=$$
+mychild=none
+
+echo $$ > $HOME/bin/repeat-r.pid
+
+#
+# create child process that does the loop,
+# then kill it to stop
+#
+
+d () {
+	if [ "$mychild" != "none" ]; then
+		return
+	fi
+
+	{
+		while :; do
+			xdotool key r
+			sleep 0.1
+		done
+	} &
+
+	mychild=$!
+}
+
+e () {
+	if [ "$mychild" = "none" ]; then
+		return
+	fi
+
+	kill $mychild
+	mychild=none
+}
+
+trap d USR1
+trap e USR2
+
+while :; do
+	sleep 1
+done
