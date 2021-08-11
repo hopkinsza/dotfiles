@@ -1,8 +1,10 @@
 # .profile
 
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/games
+PATH=/usr/local/bin:/usr/local/sbin
+PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/games
 PATH=$PATH:$HOME/bin:/usr/pkg/bin:/usr/pkg/sbin
 export PATH
+
 export LC_ALL=C
 export MANPATH=/usr/share/man:/usr/pkg/man
 export VISUAL=vim
