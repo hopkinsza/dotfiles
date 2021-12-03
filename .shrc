@@ -1,0 +1,92 @@
+#!/bin/sh
+# .shrc
+
+# return for non-interactive shell
+case "$-" in
+*i*)
+	# interactive
+	;;
+*)
+	return 0
+	;;
+esac
+
+alias ls='colorls -G'
+alias ll='ls -Fal'
+alias grep='grep --color=auto'
+
+alias f='clear'
+alias v=$VISUAL
+alias cx='chmod u+x'
+
+set -o vi
+
+notes () {
+	${VISUAL:-${EDITOR:-vi}} $HOME/.notes
+}
+
+# prompt function: default behavior is for ksh,
+# -s for simple prompt with no color
+ps1 () {
+	local e=$?
+	local shell=
+	if [ "$1" = '-s' ]; then
+		shell=simple
+	else
+		shell=ksh
+	fi
+
+	local init=
+	# escape codes
+	local rst=
+	local r=
+	local g=
+	local b=
+
+	local path=
+	local ds=
+
+	if [ "$shell" = ksh ]; then
+		init='\1\r'
+		rst='\1\e[00m\1'
+		r='\1\e[00;31m\1'
+		g='\1\e[00;32m\1'
+		b='\1\e[01;34m\1'
+
+		case $e in
+		0)
+			ds="$g\$"
+			;;
+		*)
+			ds="$r\$"
+			;;
+		esac
+	else
+		case $e in
+		0)
+			ds='$'
+			;;
+		*)
+			ds='e$'
+		esac
+	fi
+
+	case $PWD in
+	/home/$USER*)
+		path="~${PWD#/home/$USER}"
+		;;
+	*)
+		path=$PWD
+		;;
+	esac
+
+	printf "$init$g[$USER $b$path$g]$ds $rst"
+}
+
+if [ -n "$KSH_VERSION" ]; then
+	PS1='`ps1`'
+elif [ -n "$BASH_VERSION" ]; then
+	PS1='`ps1`'
+else
+	PS1='`ps1 -s`'
+fi

@@ -2,7 +2,7 @@
 !/.gitignore
 ### shell
 !/.profile
-!/.kshrc
+!/.shrc
 
 !/.bashrc
 !/.zshrc

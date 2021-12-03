@@ -1,3 +1,3 @@
 # .bashrc
 
-. $HOME/.kshrc
+. $HOME/.shrc
