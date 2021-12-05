@@ -37,6 +37,7 @@
 
 #listview {
 	layout:  horizontal;
+	lines: 64;
 	spacing: 6px;
 }
 
