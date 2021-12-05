@@ -2,50 +2,48 @@
 	bg:    #181818;
 	bg-l:  #282828;
 	bg-c:  #035;
-	txt-c: #080;
+	txt-c: #2a0;
 
 	background-color: @bg;
-	text-color:       #aaa;
-	font:             "Mono 10";
-
-	padding:          0px;
+	text-color:       #ddd;
+	font: "mono 10";
 }
 
 #window {
-    anchor: north;
-    location: north;
-    y-offset: 24px;
-    width: 100%;
-    children: [ horibox ];
+	anchor:   north;
+	location: north;
+	y-offset: 24px;
+	width:    100%;
+
+	children: [ horibox ];
 }
 
 #horibox {
-    orientation: horizontal;
-    children: [ prompt, entry, listview ];
+	orientation: horizontal;
+	children: [ prompt, entry, listview ];
 }
 
 #prompt {
-    padding:          4px;
-    background-color: @bg-c;
+	padding:          4px 6px;
+	background-color: @bg-c;
 }
 
 #entry {
-    text-color:       @txt-c;
-    padding: 4px 4px;
-    expand: false;
-    width: 10em;
+	text-color: @txt-c;
+	padding: 4px;
+	expand: false;
+	width: 8em;
 }
 
 #listview {
-    layout:  horizontal;
-    spacing: 2px;
-    lines:   100;
+	layout:  horizontal;
+	spacing: 6px;
 }
 
 #element {
-    padding: 4px 8px;
+	padding: 4px 8px;
 }
 
 #element selected {
-    background-color: @bg-l;
+	background-color: @bg-l;
 }
