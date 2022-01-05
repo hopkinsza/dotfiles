@@ -1,0 +1,57 @@
+* {
+	bg:    #181818;
+	bg-l:  #282828;
+	bg-c:  #035;
+	txt:   #ddd;
+	txt-c: #2a0;
+
+	background-color: inherit;
+	text-color: @txt;
+	font: "mono 10";
+
+	padding: 0px;
+	margin:  0px;
+	border:  0px;
+}
+
+window {
+	anchor:   north;
+	location: north;
+	y-offset: 24px;
+	width:    100%;
+
+	background-color: @bg;
+
+	children: [ horibox ];
+}
+
+horibox {
+	orientation: horizontal;
+	children: [ prompt, entry, listview ];
+}
+
+prompt {
+	padding: 4px 6px;
+	background-color: @bg-c;
+}
+
+entry {
+	text-color: @txt-c;
+	padding: 4px;
+	expand: false;
+	width: 8em;
+}
+
+listview {
+	layout: horizontal;
+	lines: 64;
+	spacing: 6px;
+}
+
+element {
+	padding: 4px 8px;
+}
+
+element selected {
+	background-color: @bg-l;
+}
