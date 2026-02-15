@@ -41,4 +41,8 @@ bspc config pointer_modifier		mod1
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
 
-#xinput set-prop 'pointer:Corsair Corsair Gaming GLAIVE RGB Mouse' 'libinput Accel Profile Enabled' 0, 1
+xinput set-prop 'pointer:SteelSeries SteelSeries Rival 5' 'libinput Accel Profile Enabled' 0, 1
+
+# /home/frey/.local/bin/rivalcfg --top-color    220000
+# /home/frey/.local/bin/rivalcfg --middle-color 220100
+# /home/frey/.local/bin/rivalcfg --bottom-color 220200
