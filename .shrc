@@ -11,7 +11,7 @@ case "$-" in
 	;;
 esac
 
-alias ls='colorls -G'
+#alias ls='ls --color=auto'
 alias ll='ls -Fal'
 alias grep='grep --color=auto'
 
