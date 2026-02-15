@@ -1,0 +1,2 @@
+#!/bin/sh
+exec bmake -m /usr/share/mk -m /home/frey/git/rf-mk "$@"
